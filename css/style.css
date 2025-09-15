@@ -66,6 +66,8 @@ p {
     pointer-events: none;
     transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 10;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.2;
 }
 
 .apppopup h2 {
