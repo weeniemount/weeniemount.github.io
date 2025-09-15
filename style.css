@@ -6,7 +6,7 @@ body {
 .weeniebar {
     background-color: #c72121;
     width: 100%;
-    height: 80px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,3 +44,65 @@ p {
 .appimage:hover {
     transform: scale(1.1);
 }
+
+.appcontainer {
+    position: relative;
+    display: inline-block;
+}
+
+.apppopup {
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    width: 220px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+.apppopup h2 {
+    color: #fff;
+    margin: 0 0 3px 0;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.apppopup .platforms {
+    color: #aaa;
+    font-size: 12px;
+    margin: 0 0 5px 0;
+}
+
+.apppopup .description {
+    margin: 0;
+    font-weight: 400;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.apppopup .arrow {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #333;
+}
+
+.appcontainer:hover .apppopup {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(5px);
+}
+
