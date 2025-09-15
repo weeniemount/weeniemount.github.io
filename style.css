@@ -79,6 +79,7 @@ p {
     color: #aaa;
     font-size: 12px;
     margin: 0 0 5px 0;
+    text-align: left;
 }
 
 .apppopup .description {
@@ -86,6 +87,7 @@ p {
     font-weight: 400;
     color: #ccc;
     font-size: 14px;
+    text-align: left;
 }
 
 .apppopup .arrow {
