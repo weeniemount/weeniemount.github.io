@@ -12,6 +12,13 @@ body {
     align-items: center;
 }
 
+.weeniebar p {
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
 h1 {
     color: black;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -110,3 +117,8 @@ p {
     transform: translateX(-50%) translateY(5px);
 }
 
+.centerdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
