@@ -10,13 +10,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .weeniebar p {
     color: white;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-left: 10px;
-    font-size: 20px;
+    margin-top: 20px;
 }
 
 h1 {
