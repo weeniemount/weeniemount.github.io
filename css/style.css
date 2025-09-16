@@ -1,22 +1,29 @@
 body {
     margin: 0;
     color: #e9e9e9;
+    overflow-x: hidden;
 }
 
 .weeniebar {
-    background-color: #c72121;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+	background-color: #c72121;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 10px;
+	padding-left: 10px;
 }
 
-.weeniebar p {
-    color: white;
-    margin-top: 20px;
+.weeniebar img {
+	display: block;
 }
+.weeniebar p {
+	color: white;
+	margin: 0;
+	font-weight: bold;
+}
+
 
 h1 {
     color: black;
@@ -31,11 +38,16 @@ p {
 }
 
 .appslist {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap; /* allows items to move to next row */
+	justify-content: center; /* centers items horizontally */
+	gap: 5px; /* spacing between items */
+	margin-top: 20px;
+}
+
+.appcontainer {
+	flex: 0 1 calc(20% - 20px); /* 5 items per row, minus the gap */
+	box-sizing: border-box;
 }
 
 .appimage {
