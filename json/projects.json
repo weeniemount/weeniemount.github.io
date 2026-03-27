@@ -1,0 +1,107 @@
+{
+    "categories": [
+        {
+            "id": "apps",
+            "label": "apps:"
+        },
+        {
+            "id": "other",
+            "label": "other stuff:"
+        },
+        {
+            "id": "web",
+            "label": "web:"
+        }
+    ],
+    "projects": [
+        {
+            "category": "apps",
+            "href": "https://github.com/weeniemount/applauncher",
+            "img": "https://raw.githubusercontent.com/weeniemount/applauncher/refs/heads/main/github/icon.png",
+            "name": "App Launcher",
+            "platforms": "Windows, Linux, macOS",
+            "description": "recreation of chrome 48's App Launcher feature which was later discontinued and then remade by me in 2024/2025 with electron"
+        },
+        {
+            "category": "apps",
+            "href": "https://github.com/weeniemount/shitviewer",
+            "img": "https://raw.githubusercontent.com/weeniemount/shitviewer/refs/heads/main/src/icons/icon-linux.png",
+            "name": "SHIT VIEWER",
+            "platforms": "Windows, Linux, macOS",
+            "description": "joke app made because of https://github.com/Red-Killer/shit and made in electron. you can view past readme's of said repo, i guess."
+        },
+        {
+            "category": "apps",
+            "href": "https://github.com/weeniemount/thenews",
+            "img": "https://raw.githubusercontent.com/weeniemount/thenews/refs/heads/main/the%20news/Assets/SmallTile.scale-400.png",
+            "name": "the news",
+            "platforms": "Windows, Linux",
+            "description": "a windows 10/11 notification tester with silly UWP ui and notifications! theres also a Win32 cli version of it under weeniemount/thenews-win32! a bit later i made a port to Linux in Qt under thenews-linux repo"
+        },
+        {
+            "category": "apps",
+            "href": "https://github.com/weeniemount/googleballs-app",
+            "img": "https://raw.githubusercontent.com/weeniemount/googleballs-app/refs/heads/master/images/balls.png",
+            "name": "Google Balls",
+            "platforms": "Windows, Linux, macOS, iOS, Android, PS Vita, 3DS, Tizen, Visual Studio Code, UWP, Windows Phone 8.1, PSP, webOS",
+            "description": "a port of the remake of the google bouncing balls doodle from 2010! runs on various sorts of platforms like i listed above and also has an Electron, Tauri, SDL2, GTK3 and Rust Macroquad version for windows and linux!"
+        },
+        {
+            "category": "apps",
+            "href": "https://github.com/weeniemount/GaryTV",
+            "img": "https://raw.githubusercontent.com/weeniemount/GaryTV/refs/heads/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+            "name": "GaryTV",
+            "platforms": "AndroidTV/GoogleTV (whatever its called today)",
+            "description": "view pictures of gary the cat straight on your tv!"
+        },
+        {
+            "category": "apps",
+            "href": "https://github.com/weeniemount/facedev-desktop-pet",
+            "img": "https://raw.githubusercontent.com/weeniemount/facedev-desktop-pet/refs/heads/main/src/icons/desktoppet.png",
+            "name": "FaceDev Desktop Pet",
+            "platforms": "Windows",
+            "description": "desktop pet of the FaceDev youtuber. collaborative project between me and UsernameThisLol. we both decided on... you guessed it, electron. windows only though since the project died after a week lol"
+        },
+        {
+            "category": "other",
+            "href": "https://github.com/weeniemount/hbot-discord",
+            "img": "https://raw.githubusercontent.com/weeniemount/hbot-discord/refs/heads/main/images/pfp.png",
+            "name": "dancing h Discord bot",
+            "platforms": "Discord",
+            "description": "a fun discord bot themed around the dancing letter h! its shutdown though since i dont feel like maintaing it. you can self host it if you want to, though!"
+        },
+        {
+            "category": "web",
+            "href": "https://github.com/weeniemount/pissandshitimages",
+            "img": "https://raw.githubusercontent.com/weeniemount/pissandshitimages/refs/heads/master/src/public/favicon.ico",
+            "name": "pissandshitimages",
+            "platforms": "Web",
+            "description": "originally a parody of image hosters, it became one itself. powered by supabase! currently under \"maintenance\" because i dont feel like moderating it."
+        },
+        {
+            "category": "other",
+            "href": "https://github.com/weeniemount/weenos",
+            "img": "https://raw.githubusercontent.com/weeniemount/weenos/refs/heads/master/system_files/overrides/usr/share/pixmaps/fedora-logo-small.png",
+            "imgStyle": "object-fit: contain;",
+            "name": "weenOS",
+            "platforms": "Linux Distro",
+            "description": "weenOS, a joke/meme distro with a google balls theme running on fedora 43 kde plasma built with ublue"
+        },
+        {
+            "category": "other",
+            "href": "https://github.com/weeniemount/weenBot",
+            "img": "https://raw.githubusercontent.com/weeniemount/weenBot/refs/heads/main/src/images/pfp.png",
+            "name": "weenBot",
+            "platforms": "Discord",
+            "description": "a discord bot made by me that has a lot of funny features like image tools, bubblewrap, and more!"
+        },
+        {
+            "category": "web",
+            "href": "https://github.com/weeniemount/shoddy-gd-server",
+            "img": "https://raw.githubusercontent.com/weeniemount/shoddy-gd-server/refs/heads/master/logo.png",
+            "name": "shoddy gd server",
+            "platforms": "Web",
+            "description": "custom server for Geometry Dash 1.0-1.5 in node js"
+        }
+    ]
+}

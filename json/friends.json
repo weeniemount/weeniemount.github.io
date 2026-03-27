@@ -1,0 +1,28 @@
+{
+    "friends": [
+        {
+            "name": "CreeperITA104",
+            "picture": "https://creeperita104.is-a.dev/assets/images/pfp.png",
+            "link": "https://creeperita104.is-a.dev/",
+            "description": "funny italian guy everyone likes"
+        },
+        {
+            "name": "hn1f",
+            "picture": "https://hn1f.duckdns.org/favicon.ico",
+            "link": "https://hn1f.duckdns.org/",
+            "description": "likes to mod a lot of linux and android"
+        },
+        {
+            "name": "PlOszukiwacz",
+            "picture": "https://avatars.githubusercontent.com/u/87446593?v=4",
+            "link": "https://ploszukiwacz.is-a.dev/",
+            "description": "cat"
+        },
+        {
+            "name": "QuinceTart10",
+            "picture": "https://quincetart10.is-a.dev/images/pfp.png",
+            "link": "https://quincetart10.is-a.dev/",
+            "description": "cool guy that i play games with and send tiktoks"
+        }
+    ]
+}
