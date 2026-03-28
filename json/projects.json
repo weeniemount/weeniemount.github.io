@@ -43,8 +43,8 @@
             "href": "https://github.com/weeniemount/googleballs-app",
             "img": "https://raw.githubusercontent.com/weeniemount/googleballs-app/refs/heads/master/images/balls.png",
             "name": "Google Balls",
-            "platforms": "Windows, Linux, macOS, iOS, Android, PS Vita, 3DS, Tizen, Visual Studio Code, UWP, Windows Phone 8.1, PSP, webOS",
-            "description": "a port of the remake of the google bouncing balls doodle from 2010! runs on various sorts of platforms like i listed above and also has an Electron, Tauri, SDL2, GTK3 and Rust Macroquad version for windows and linux!"
+            "platforms": "Windows, Linux, macOS, iOS, Android, PS Vita, 3DS, Tizen, Visual Studio Code, UWP, Windows Phone 8.1, PSP, webOS, Wii, Wii U, PS3, Haiku, J2ME, DS, Flash (AS3), Flash (AS2)",
+            "description": "a port of the remake of the google bouncing balls doodle from 2010! runs on various sorts of platforms like i listed above and also has an Electron, Tauri, SDL2, GTK3 and Rust Macroquad version for windows and linux! got found when i made the @googleballs.com bluesky account, and its currently sitting at 67 stars and 11 forks"
         },
         {
             "category": "apps",
@@ -102,6 +102,14 @@
             "name": "shoddy gd server",
             "platforms": "Web",
             "description": "custom server for Geometry Dash 1.0-1.5 in node js"
+        },
+        {
+            "category": "apps",
+            "href": "https://github.com/weeniemount/weenCode",
+            "img": "https://raw.githubusercontent.com/weeniemount/weenCode/refs/heads/main/resources/win32/weencode.png",
+            "name": "weenCode",
+            "platforms": "Windows, Linux",
+            "description": "shitty Visual Studio Code fork with New Swag:tm: such as gravity. and uhh, the old Insiders christmas hat."
         }
     ]
 }
