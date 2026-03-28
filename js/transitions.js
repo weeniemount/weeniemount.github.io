@@ -104,11 +104,114 @@ function swapContent(html, href) {
     }, 150);
 }
 
+function doExternalLinkAnimation(link, href) {
+    const visualEl = link.classList.contains('friendcard')
+        ? link
+        : (link.querySelector('.appcontainer') || link);
+
+    const rect = visualEl.getBoundingClientRect();
+
+    const front = document.createElement('div');
+    front.style.cssText = `
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    `;
+
+    const back = document.createElement('div');
+    back.style.cssText = `
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform: rotateY(180deg);
+        background-color: #1a1a1a;
+        background-image: url('/images/tile.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        overflow: hidden;
+    `;
+
+    const inner = document.createElement('div');
+    inner.style.cssText = `
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        position: relative;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    `;
+    inner.appendChild(front);
+    inner.appendChild(back);
+
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: absolute;
+        transform-style: preserve-3d;
+        top: ${rect.top}px;
+        left: ${rect.left}px;
+        width: ${rect.width}px;
+        height: ${rect.height}px;
+        transition:
+            top 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+            left 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+            width 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+            height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    `;
+    overlay.appendChild(inner);
+
+    const perspectiveContainer = document.createElement('div');
+    perspectiveContainer.style.cssText = `
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        perspective: 1000px;
+        pointer-events: none;
+    `;
+    perspectiveContainer.appendChild(overlay);
+
+    html2canvas(visualEl, { backgroundColor: null, useCORS: true }).then(canvas => {
+        const img = document.createElement('img');
+        img.src = canvas.toDataURL();
+        img.style.cssText = 'width: 100%; height: 100%; object-fit: fill; display: block; border-radius: inherit;';
+        front.appendChild(img);
+
+        visualEl.style.visibility = 'hidden';
+        document.body.appendChild(perspectiveContainer);
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                overlay.style.top = '0';
+                overlay.style.left = '0';
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+                inner.style.transform = 'rotateY(180deg)';
+            });
+        });
+    });
+
+    setTimeout(() => {
+        window.location.href = href;
+    }, 750);
+}
+
 document.addEventListener('click', e => {
     const link = e.target.closest('a');
     if (!link) return;
     const href = link.getAttribute('href');
-    if (!href || href.startsWith('http') || href.startsWith('#')) return;
+    if (!href) return;
+
+    if (href.startsWith('http')) {
+        e.preventDefault();
+        doExternalLinkAnimation(link, href);
+        return;
+    }
+
+    if (href.startsWith('#')) return;
     if (!href.endsWith('.html') && !href.match(/\/[^/.]*$/)) return;
 
     const fetchUrl = href === '/' ? '/index.html' : href.endsWith('.html') ? href : href + '.html';
@@ -120,10 +223,6 @@ window.addEventListener('popstate', () => {
     const pathname = location.pathname;
     const fetchUrl = pathname === '/' ? '/index.html' : pathname.endsWith('.html') ? pathname : pathname + '.html';
     fetch(fetchUrl).then(r => r.text()).then(html => swapContent(html, null));
-});
-
-window.addEventListener('popstate', () => {
-    fetch(location.pathname).then(r => r.text()).then(html => swapContent(html, null));
 });
 
 initPage();
