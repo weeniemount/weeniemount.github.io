@@ -108,10 +108,18 @@ document.addEventListener('click', e => {
     const link = e.target.closest('a');
     if (!link) return;
     const href = link.getAttribute('href');
-    if (!href || href.startsWith('http') || href.startsWith('#') || !href.endsWith('.html')) return;
+    if (!href || href.startsWith('http') || href.startsWith('#')) return;
+    if (!href.endsWith('.html') && !href.match(/\/[^/.]*$/)) return;
 
+    const fetchUrl = href === '/' ? '/index.html' : href.endsWith('.html') ? href : href + '.html';
     e.preventDefault();
-    fetch(href).then(r => r.text()).then(html => swapContent(html, href));
+    fetch(fetchUrl).then(r => r.text()).then(html => swapContent(html, href));
+});
+
+window.addEventListener('popstate', () => {
+    const pathname = location.pathname;
+    const fetchUrl = pathname === '/' ? '/index.html' : pathname.endsWith('.html') ? pathname : pathname + '.html';
+    fetch(fetchUrl).then(r => r.text()).then(html => swapContent(html, null));
 });
 
 window.addEventListener('popstate', () => {
