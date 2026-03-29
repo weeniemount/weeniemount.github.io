@@ -129,6 +129,9 @@ function doExternalLinkAnimation(link, href) {
         -webkit-backface-visibility: hidden;
         transform: rotateY(180deg);
         background-color: #1a1a1a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         overflow: hidden;
     `;
 
@@ -221,7 +224,14 @@ function doExternalLinkAnimation(link, href) {
 
         const backImg = document.createElement('img');
         backImg.src = avatarSrc;
-        backImg.style.cssText = `position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;`;
+        backImg.style.cssText = `
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+            display: block;
+        `;
         back.appendChild(backImg);
 
         trigger();
@@ -236,12 +246,10 @@ function doExternalLinkAnimation(link, href) {
                 const backImg = document.createElement('img');
                 backImg.src = canvas.toDataURL();
                 backImg.style.cssText = `
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100vw;
-                    height: 100vh;
-                    object-fit: cover;
+                    width: ${rect.width}px;
+                    height: ${rect.height}px;
+                    display: block;
+                    border-radius: inherit;
                 `;
                 back.appendChild(backImg);
                 trigger();
