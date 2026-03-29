@@ -1,6 +1,6 @@
 function renderFriend(f) {
     return `
-        <a href="${f.link}" class="friendcard" target="_blank" rel="noopener">
+        <a href="${f.link}" class="friendcard">
             <img src="${f.picture}" alt="${f.name}">
             <div class="friendinfo">
                 <h2>${f.name}</h2>
@@ -90,6 +90,7 @@ function renderProject(p) {
 }
 
 function swapContent(html, href) {
+    document.querySelectorAll('[data-transition-overlay]').forEach(el => el.remove());
     const doc = new DOMParser().parseFromString(html, 'text/html');
     const content = document.querySelector('.content');
     const newContent = doc.querySelector('.content');
@@ -105,7 +106,8 @@ function swapContent(html, href) {
 }
 
 function doExternalLinkAnimation(link, href) {
-    const visualEl = link.classList.contains('friendcard')
+    const isFriendCard = link.classList.contains('friendcard');
+    const visualEl = isFriendCard
         ? link
         : (link.querySelector('.appcontainer') || link);
 
@@ -127,9 +129,6 @@ function doExternalLinkAnimation(link, href) {
         -webkit-backface-visibility: hidden;
         transform: rotateY(180deg);
         background-color: #1a1a1a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         overflow: hidden;
     `;
 
@@ -161,6 +160,7 @@ function doExternalLinkAnimation(link, href) {
     overlay.appendChild(inner);
 
     const perspectiveContainer = document.createElement('div');
+    perspectiveContainer.dataset.transitionOverlay = '';
     perspectiveContainer.style.cssText = `
         position: fixed;
         z-index: 9999;
@@ -173,25 +173,9 @@ function doExternalLinkAnimation(link, href) {
     `;
     perspectiveContainer.appendChild(overlay);
 
-    html2canvas(visualEl, { backgroundColor: null, useCORS: true }).then(canvas => {
-        const img = document.createElement('img');
-        img.src = canvas.toDataURL();
-        img.style.cssText = 'width: 100%; height: 100%; object-fit: fill; display: block; border-radius: inherit;';
-        front.appendChild(img);
-
-        const backImg = document.createElement('img');
-        backImg.src = canvas.toDataURL();
-        backImg.style.cssText = `
-            width: ${rect.width}px;
-            height: ${rect.height}px;
-            display: block;
-            border-radius: inherit;
-        `;
-        back.appendChild(backImg);
-
+    const trigger = () => {
         visualEl.style.visibility = 'hidden';
         document.body.appendChild(perspectiveContainer);
-
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 overlay.style.top = '0';
@@ -201,7 +185,72 @@ function doExternalLinkAnimation(link, href) {
                 inner.style.transform = 'rotateY(180deg)';
             });
         });
-    });
+    };
+
+    if (isFriendCard) {
+        const avatarSrc = link.querySelector('img')?.src;
+        const name = link.querySelector('h2')?.textContent;
+        const description = link.querySelector('p')?.textContent;
+
+        front.style.cssText += `
+            background: rgba(124, 124, 124, 0.349);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            overflow: hidden;
+        `;
+        const avatar = document.createElement('img');
+        avatar.src = avatarSrc;
+        avatar.style.cssText = `width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0;`;
+
+        const info = document.createElement('div');
+        const h2 = document.createElement('h2');
+        h2.textContent = name;
+        h2.style.cssText = `color: white; margin: 0 0 4px 0; font-size: 1.1em; font-family: 'Trebuchet MS', sans-serif;`;
+        
+        const p = document.createElement('p');
+        p.textContent = description;
+        p.style.cssText = `margin: 0; opacity: 0.7; font-size: 0.9em; color: white; font-family: 'Trebuchet MS', sans-serif; text-align: left;`;
+        info.appendChild(h2);
+        info.appendChild(p);
+        front.appendChild(avatar);
+        front.appendChild(info);
+
+        const backImg = document.createElement('img');
+        backImg.src = avatarSrc;
+        backImg.style.cssText = `position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;`;
+        back.appendChild(backImg);
+
+        trigger();
+    } else {
+        html2canvas(visualEl, { backgroundColor: null, useCORS: true, allowTaint: true, logging: false, imageTimeout: 0 })
+            .then(canvas => {
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL();
+                img.style.cssText = 'width: 100%; height: 100%; object-fit: fill; display: block; border-radius: inherit;';
+                front.appendChild(img);
+
+                const backImg = document.createElement('img');
+                backImg.src = canvas.toDataURL();
+                backImg.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    object-fit: cover;
+                `;
+                back.appendChild(backImg);
+                trigger();
+            })
+            .catch(() => {
+                front.style.background = '#2a2a2a';
+                trigger();
+            });
+    }
 
     setTimeout(() => {
         window.location.href = href;
@@ -232,6 +281,10 @@ window.addEventListener('popstate', () => {
     const pathname = location.pathname;
     const fetchUrl = pathname === '/' ? '/index.html' : pathname.endsWith('.html') ? pathname : pathname + '.html';
     fetch(fetchUrl).then(r => r.text()).then(html => swapContent(html, null));
+});
+
+window.addEventListener('pageshow', () => {
+    document.querySelectorAll('[data-transition-overlay]').forEach(el => el.remove());
 });
 
 initPage();
