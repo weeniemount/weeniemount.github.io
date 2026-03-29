@@ -294,7 +294,7 @@ document.addEventListener('click', e => {
 
     const fetchUrl = href === '/' ? '/index.html' : href.endsWith('.html') ? href : href + '.html';
     e.preventDefault();
-    fetch(fetchUrl).then(r => r.text()).then(html => swapContent(html, href));
+    fetch(fetchUrl + '?v=' + Date.now()).then(r => r.text()).then(html => swapContent(html, href));
 });
 
 window.addEventListener('popstate', () => {
