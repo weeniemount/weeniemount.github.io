@@ -127,10 +127,9 @@ function doExternalLinkAnimation(link, href) {
         -webkit-backface-visibility: hidden;
         transform: rotateY(180deg);
         background-color: #1a1a1a;
-        background-image: url('/images/tile.png');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         overflow: hidden;
     `;
 
@@ -179,6 +178,16 @@ function doExternalLinkAnimation(link, href) {
         img.src = canvas.toDataURL();
         img.style.cssText = 'width: 100%; height: 100%; object-fit: fill; display: block; border-radius: inherit;';
         front.appendChild(img);
+
+        const backImg = document.createElement('img');
+        backImg.src = canvas.toDataURL();
+        backImg.style.cssText = `
+            width: ${rect.width}px;
+            height: ${rect.height}px;
+            display: block;
+            border-radius: inherit;
+        `;
+        back.appendChild(backImg);
 
         visualEl.style.visibility = 'hidden';
         document.body.appendChild(perspectiveContainer);
