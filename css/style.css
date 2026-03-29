@@ -283,3 +283,45 @@ p {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+.contactlist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contactcard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(124, 124, 124, 0.349);
+    border-radius: 8px;
+    padding: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s ease;
+}
+
+.contactcard:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.contactinfo h2 {
+    color: white;
+    margin: 0 0 4px 0;
+    font-size: 1.1em;
+}
+
+.contactinfo p {
+    margin: 0;
+    opacity: 0.7;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+.contactcard {
+    opacity: 0;
+    animation: friendFadeIn 0.3s ease forwards;
+}

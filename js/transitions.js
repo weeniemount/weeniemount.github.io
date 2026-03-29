@@ -71,6 +71,12 @@ function initPage() {
             })
             .catch(err => console.error('failed to load friends.json:', err));
     }
+
+    if (location.pathname.includes('contact')) {
+        document.querySelectorAll('.contactcard').forEach((card, i) => {
+            card.style.animationDelay = `${i * 0.08}s`;
+        });
+    }
 }
 
 function renderProject(p) {
@@ -107,6 +113,7 @@ function swapContent(html, href) {
 
 function doExternalLinkAnimation(link, href) {
     const isFriendCard = link.classList.contains('friendcard');
+    const isContactCard = link.classList.contains('contactcard');
     const visualEl = isFriendCard
         ? link
         : (link.querySelector('.appcontainer') || link);
@@ -190,8 +197,7 @@ function doExternalLinkAnimation(link, href) {
         });
     };
 
-    if (isFriendCard) {
-        const avatarSrc = link.querySelector('img')?.src;
+    if (isFriendCard || isContactCard) {
         const name = link.querySelector('h2')?.textContent;
         const description = link.querySelector('p')?.textContent;
 
@@ -205,35 +211,41 @@ function doExternalLinkAnimation(link, href) {
             border-radius: 8px;
             overflow: hidden;
         `;
-        const avatar = document.createElement('img');
-        avatar.src = avatarSrc;
-        avatar.style.cssText = `width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0;`;
-
         const info = document.createElement('div');
         const h2 = document.createElement('h2');
         h2.textContent = name;
         h2.style.cssText = `color: white; margin: 0 0 4px 0; font-size: 1.1em; font-family: 'Trebuchet MS', sans-serif;`;
-        
         const p = document.createElement('p');
         p.textContent = description;
         p.style.cssText = `margin: 0; opacity: 0.7; font-size: 0.9em; color: white; font-family: 'Trebuchet MS', sans-serif; text-align: left;`;
         info.appendChild(h2);
         info.appendChild(p);
-        front.appendChild(avatar);
+
+        if (isFriendCard) {
+            const avatarSrc = link.querySelector('img')?.src;
+            const avatar = document.createElement('img');
+            avatar.src = avatarSrc;
+            avatar.style.cssText = `width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0;`;
+            front.appendChild(avatar);
+
+            const backImg = document.createElement('img');
+            backImg.src = avatarSrc;
+            backImg.style.cssText = `
+                width: 128px;
+                height: 128px;
+                border-radius: 50%;
+                object-fit: cover;
+                display: block;
+                flex-shrink: 0;
+                align-self: center;
+                justify-self: center;
+            `;
+            back.appendChild(backImg);
+        } else {
+            back.style.background = '#1a1a1a';
+        }
+
         front.appendChild(info);
-
-        const backImg = document.createElement('img');
-        backImg.src = avatarSrc;
-        backImg.style.cssText = `
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            object-fit: cover;
-            display: block;
-        `;
-        back.appendChild(backImg);
-
         trigger();
     } else {
         html2canvas(visualEl, { backgroundColor: null, useCORS: true, allowTaint: true, logging: false, imageTimeout: 0 })
