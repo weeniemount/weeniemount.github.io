@@ -44,14 +44,14 @@ p {
 
 .appslist {
 	display: flex;
-	flex-wrap: wrap; /* allows items to move to next row */
-	justify-content: center; /* centers items horizontally */
-	gap: 5px; /* spacing between items */
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 5px;
 	margin-top: 20px;
 }
 
 .appcontainer {
-	flex: 0 1 calc(20% - 20px); /* 5 items per row, minus the gap */
+	flex: 0 1 calc(20% - 20px);
 	box-sizing: border-box;
 }
 
@@ -183,7 +183,7 @@ p {
     display: flex;
     align-items: center;
     gap: 16px;
-    background: rgba(124, 124, 124, 0.349); /* was 0.05 */
+    background: rgba(124, 124, 124, 0.349);
     border-radius: 8px;
     padding: 16px;
     text-decoration: none;
@@ -194,7 +194,7 @@ p {
 }
 
 .friendcard:hover {
-    background: rgba(255,255,255,0.25); /* was 0.1 */
+    background: rgba(255,255,255,0.25);
 }
 
 .friendcard img {
