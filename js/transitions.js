@@ -1,3 +1,5 @@
+alert("this website is now archived! please go visit https://weeniemount.pages.dev/ instead for like a wayyyy better version of this site (and a blog!!!)")
+
 function renderFriend(f) {
     return `
         <a href="${f.link}" class="friendcard">
